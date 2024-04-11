@@ -8134,7 +8134,7 @@ build_lswitch_arp_nd_responder_known_ips(struct ovn_port *op,
             for (size_t i = 0; i < op->n_lsp_addrs; i++) {
                 for (size_t j = 0; j < op->lsp_addrs[i].n_ipv4_addrs; j++) {
                     ds_clear(match);
-                    ds_put_format(match, "arp.tpa == %s && arp.op == 1",
+                    ds_put_format(match, "arp.tpa == %s && arp.op == 1 && eth.dst == ff:ff:ff:ff:ff:ff",
                                 op->lsp_addrs[i].ipv4_addrs[j].addr_s);
                     ds_clear(actions);
                     ds_put_format(actions,

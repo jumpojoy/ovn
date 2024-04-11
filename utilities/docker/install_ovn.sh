@@ -17,9 +17,16 @@ GITHUB_SRC=$2
 
 # get ovs source always from master as its needed as dependency
 mkdir /build; cd /build
-git clone --depth 1 -b master https://github.com/openvswitch/ovs.git
-cd ovs;
-mkdir _gcc;
+#git clone --depth 1 -b master https://github.com/openvswitch/ovs.git
+#cd ovs;
+#mkdir _gcc;
+git clone --depth 1 -b $OVN_BRANCH $GITHUB_SRC
+cd ovn
+cd ovs
+git submodule update --init
+mv ../ovs /build/ovs
+cd /build/ovs
+mkdir _gcc
 
 # build and install
 ./boot.sh
@@ -28,10 +35,11 @@ cd _gcc
 --enable-ssl
 cd ..; make -C _gcc install; cd ..
 
-
+echo "build ovn"
+sleep 60
 # get ovn source
-git clone --depth 1 -b $OVN_BRANCH $GITHUB_SRC
-cd ovn
+#git clone --depth 1 -b $OVN_BRANCH $GITHUB_SRC
+cd /build/ovn
 
 # build and install
 ./boot.sh

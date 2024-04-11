@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04
 MAINTAINER "Aliasgar Ginwala" <aginwala@ebay.com>
 
 ARG OVN_BRANCH
@@ -17,4 +17,4 @@ COPY start-ovn /bin/start-ovn
 VOLUME ["/var/log/openvswitch", \
 "/var/lib/openvswitch", "/var/run/openvswitch", "/etc/openvswitch", \
 "/var/log/ovn", "/var/lib/ovn", "/var/run/ovn", "/etc/ovn"]
-ENTRYPOINT ["start-ovn"]
+#ENTRYPOINT ["start-ovn"]
